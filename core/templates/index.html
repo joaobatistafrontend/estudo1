@@ -1,0 +1,55 @@
+{% load bootstrap4 %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Index</title>
+    {% bootstrap_css%}
+</head>
+<body>
+    <div class="container">
+        <h1>Produtos</h1>
+        <table class="table table-striped table-dark">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Produto</th>
+                    <th scope="col">Preço</th>
+                    <th scope="col">Estoque</th>
+                </tr>
+            </thead>
+                {% for produto in produtos %}
+                    <tr>
+                        <th scope="row">{{produto.id}}</th>
+                        <th scope="row"><a href="#modal{{produto.id}}" data-toggle="modal">{{produto.nome}}</a></th>
+                        <th scope="row">{{produto.preco}}</th>
+                        <th scope="row">{{produto.estoque}}</th>
+                    </tr>
+                    <div class="modal fade bd-example-modal-lg show" id="modal{{produto.id}}" role="dialog">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal">
+                                        <samp aria-hidden="true">&times;</samp>
+                                    </button>
+                                </div>
+                                <div class="modal-body" id="dynamic-content">
+                                    <img src="{{produto.imagem.url}}" class="img-fluid" alt="{{produto.name}}">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor%}
+        </table>
+
+
+
+
+    </div>
+
+
+
+{% bootstrap_javascript jquery='full' %}
+
+</body>
+</html>
